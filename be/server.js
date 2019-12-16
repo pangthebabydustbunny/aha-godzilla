@@ -2,13 +2,14 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
-const Project = require('./models/projects')
+const Project = require('./models/project')
 mongoose.connect('mongodb://localhost:27017/godzilla-101', { useNewUrlParser: true })
 mongoose.connection.on('error', err => {
 	console.error('MongoDB error', err)
 })
 
 const app = express()
+const port = 3000
 
 // สร้าง database schema
 const Cat = mongoose.model('Cat', { name: String })
@@ -79,8 +80,4 @@ app.delete('/projects/:id', async (req, res) => {
 	}
 })
 
-app.listen(3000, () => {
-	console.log('Application is running on port 3000')
-})
-
-Project.findByIdAndUpdate('5df25ae8284309baf42e22e8')
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
